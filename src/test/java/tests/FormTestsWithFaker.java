@@ -17,12 +17,7 @@ import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.open;
 import static utils.RandomUtils.*;
 
-public class FormTestsWithFaker {
-
-    @BeforeAll
-    static void setup() {
-        Configuration.startMaximized = true;
-    }
+public class FormTestsWithFaker extends TestBase{
 
     @Test
     void checkFormFillTest() {
