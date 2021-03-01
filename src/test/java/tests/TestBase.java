@@ -2,6 +2,7 @@ package tests;
 
 import com.codeborne.selenide.Configuration;
 import io.qameta.allure.selenide.AllureSelenide;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -11,6 +12,7 @@ public class TestBase {
     @BeforeAll
     static void setup() {
         addListener("AllureSelenide", new AllureSelenide().screenshots(true));
+        Configuration.browser = System.getProperty("browser", "chrome");
         Configuration.startMaximized = true;
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -19,4 +21,14 @@ public class TestBase {
 
         Configuration.remote = "https://user1:12340@selenoid.autotests.cloud:4444/wd/hub";
     }
+
+    /*@AfterEach
+    public void afterEach() {
+        attachScreenshot("Last screenshot");
+        attachPageSource();
+        attachAsText("Browser console logs", getConsoleLogs());
+        if(System.getProperty("video_storage") != null)
+            attachVideo();
+        closeWebDriver();
+    } */
 }
