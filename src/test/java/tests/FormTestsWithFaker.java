@@ -5,6 +5,7 @@ import com.github.javafaker.Faker;
 import com.github.javafaker.service.FakeValuesService;
 import com.github.javafaker.service.RandomService;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -84,5 +85,15 @@ public class FormTestsWithFaker extends TestBase{
             $x("//td[text()='Address']").parent().shouldHave(text(address));
             $x("//td[text()='State and City']").parent().shouldHave(text(state + " " + city));
         });
+    }
+
+    @Test
+    @Tag("negative")
+    void negativeFillFormTest() {
+        open("https://demoqa.com/automation-practice-form");
+        $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
+
+        $("#submit").click();
+        $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
     }
 }

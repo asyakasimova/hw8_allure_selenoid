@@ -40,3 +40,9 @@ test {
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
+
+task negative_tests(type: Test) {
+    useJUnitPlatform {
+        includeTags 'negative'
+    }
+}
