@@ -17,11 +17,14 @@ public class    TestBase {
         Configuration.browser = System.getProperty("browser", "chrome");
         Configuration.startMaximized = true;
 
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("enableVNC", true);
-        capabilities.setCapability("enableVideo", true);
+        if (System.getProperty("remote_driver") != null) {
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.setCapability("enableVNC", true);
+            capabilities.setCapability("enableVideo", true);
 
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud:4444/wd/hub";
+            Configuration.browserCapabilities = capabilities;
+            Configuration.remote = System.getProperty("remote_driver");
+        }
     }
 
     @AfterEach
