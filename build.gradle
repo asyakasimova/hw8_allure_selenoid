@@ -37,6 +37,10 @@ test {
     useJUnitPlatform()
 }
 
+tasks.withType(Test) {
+    systemProperties += System.properties
+}
+
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }

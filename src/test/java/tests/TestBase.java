@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static com.codeborne.selenide.logevents.SelenideLogger.addListener;
 import static helpers.AttachmentsHelper.*;
 
-public class TestBase {
+public class    TestBase {
     @BeforeAll
     static void setup() {
         addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(true));
@@ -31,6 +31,6 @@ public class TestBase {
         attachAsText("Browser console logs", getConsoleLogs());
         if(System.getProperty("video_storage") != null)
             attachVideo();
-        //closeWebDriver();
+        closeWebDriver();
     }
 }
